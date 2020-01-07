@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-
+import { Link } from "react-router-dom";
 class CommentPerMovieText extends Component {
   commentGenreText = commentText => {
     const {
@@ -113,9 +113,10 @@ class CommentPerMovieText extends Component {
         </div>
         <div>
           {this.commentText(commentText)}
-          <a href={`comments/${movieid}`}>
+
+          <Link to={`comments/${movieid}`}>
             <i class="fas fa-angle-double-right"></i>More Comments
-          </a>
+          </Link>
         </div>
       </div>
     );

@@ -4,6 +4,7 @@ import Checkbox from "../checkboxes/Checkbox";
 import uuid from "uuid";
 import axios from "axios";
 import TextInputGroup from "../layout/TextInputGroup";
+import { Link } from "react-router-dom";
 
 class CommentAdd extends Component {
   constructor(props) {
@@ -355,9 +356,9 @@ class CommentAdd extends Component {
                             <div class="container">
                               <div class="row">
                                 <div class="col-md-3">
-                                  <a href="/" class="btn btn-light btn-block">
-                                    <i class="fas fa-arrow-left"></i> Back
-                                  </a>
+                                  <Link to="/" class="btn btn-light btn-block">
+                                    <i class="fas fa-arrow-left"></i>Back
+                                  </Link>
                                 </div>
                                 <div class="col-md-3">
                                   <input

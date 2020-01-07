@@ -4,6 +4,7 @@ import Checkbox from "../checkboxes/Checkbox";
 import PropTypes from "prop-types";
 import axios from "axios";
 import TextInputGroup from "../layout/TextInputGroup";
+import { Link } from "react-router-dom";
 
 class CommentEdit extends Component {
   constructor(props) {
@@ -393,9 +394,12 @@ class CommentEdit extends Component {
                             <div class="container">
                               <div class="row">
                                 <div class="col-md-3">
-                                  <a href="/" class="btn btn-light btn-block">
-                                    <i class="fas fa-arrow-left"></i> Back
-                                  </a>
+                                  <Link
+                                    to="/"
+                                    className="btn btn-light btn-block"
+                                  >
+                                    <i class="fas fa-arrow-left"></i>Back
+                                  </Link>
                                 </div>
                                 <div class="col-md-3">
                                   <input
@@ -405,19 +409,17 @@ class CommentEdit extends Component {
                                 </div>
 
                                 <div class="col-md-3">
-                                  <a
-                                    href="#"
-                                    className="btn btn-danger 
-                      btn-block "
+                                  <Link
+                                    to="#"
+                                    className="btn btn-danger btn-block"
                                     onClick={this.onDeleteClick.bind(
                                       this,
                                       id,
                                       dispatch
                                     )}
                                   >
-                                    <i className="far fa-trash-alt"></i>
-                                    Delete
-                                  </a>
+                                    <i className="far fa-trash-alt"></i>Delete
+                                  </Link>
                                 </div>
                               </div>
                             </div>

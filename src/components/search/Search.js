@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Consumer } from "../../context";
 import Select from "react-select";
 import CommentSearchDetail from "../comments/CommentSearchDetail";
+import { Link } from "react-router-dom";
 
 class Search extends Component {
   constructor() {
@@ -179,9 +180,9 @@ class Search extends Component {
                 <div className="container">
                   <div className="row">
                     <div className="col-md-3">
-                      <a href="/" class="btn btn-light btn-block">
-                        <i className="fas fa-arrow-left"></i>Back
-                      </a>
+                      <Link to="/" className="btn btn-light btn-block">
+                        <i class="fas fa-arrow-left"></i>Back
+                      </Link>
                     </div>
                   </div>
                 </div>

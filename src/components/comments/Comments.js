@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Comment from "./Comment";
 import { Consumer } from "../../context";
 import MovieAlone from "../movies/MovieAlone";
+import { Link } from "react-router-dom";
 
 class Comments extends Component {
   render() {
@@ -36,18 +37,17 @@ class Comments extends Component {
                 <div className="container">
                   <div className="row">
                     <div className="col-md-3">
-                      <a href="/" className="btn btn-light btn-block">
-                        <i className="fas fa-arrow-left"></i>Back
-                      </a>
+                      <Link to="/" className="btn btn-light btn-block">
+                        <i class="fas fa-arrow-left"></i>Back
+                      </Link>
                     </div>
-
                     <div className="col-md-3">
-                      <a
-                        href={`/comments/add/${id}`}
+                      <Link
+                        to={`/comments/add/${id}`}
                         className="btn btn-success btn-block"
                       >
                         <i className="fas fa-plus"></i>Add Comment
-                      </a>
+                      </Link>
                     </div>
                   </div>
                 </div>

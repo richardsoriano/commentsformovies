@@ -3,6 +3,7 @@ import { Consumer } from "../../context";
 import TextInputGroup from "../layout/TextInputGroup";
 import PropTypes from "prop-types";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 class MovieEdit extends Component {
   constructor(props) {
@@ -186,9 +187,12 @@ class MovieEdit extends Component {
                               <div class="container">
                                 <div class="row">
                                   <div class="col-md-3">
-                                    <a href="/" class="btn btn-light btn-block">
+                                    <Link
+                                      to="/"
+                                      class="btn btn-light btn-block"
+                                    >
                                       <i class="fas fa-arrow-left"></i>Back
-                                    </a>
+                                    </Link>
                                   </div>
                                   <div class="col-md-3">
                                     <input

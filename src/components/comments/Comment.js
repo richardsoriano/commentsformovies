@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Consumer } from "../../context";
-
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import axios from "axios";
 
@@ -124,29 +124,27 @@ class Comment extends Component {
                   <div class="d-flex">
                     <div class="mr-auto p-0 item-hl">
                       <strong>
-                        <a href={`/comments/view/${id}`}>{title}</a>
+                        <Link to={`/comments/view/${id}`}>{title}</Link>
                       </strong>{" "}
                       User: {user}
                       <small> 12/26/2019</small>
                     </div>
                     <div class="p-1 item-hl">
-                      <a
-                        href={`/comments/edit/${id}`}
-                        className="btn btn-warning btn-block "
+                      <Link
+                        to={`/comments/edit/${id}`}
+                        className="btn btn-warning btn-block"
                       >
-                        <i className="fas fa-pencil-alt"></i>
-                        Edit
-                      </a>
+                        <i className="fas fa-pencil-alt"></i>Edit
+                      </Link>
                     </div>
                     <div class="p-1 item-hl">
-                      <a
-                        href="#"
+                      <Link
+                        to="#"
                         className="btn btn-danger btn-block"
                         onClick={this.onDeleteClick.bind(this, id, dispatch)}
                       >
-                        <i className="far fa-trash-alt"></i>
-                        Delete
-                      </a>
+                        <i className="far fa-trash-alt"></i>Delete
+                      </Link>
                     </div>
                   </div>
 

@@ -3,6 +3,7 @@ import { Consumer } from "../../context";
 import TextInputGroup from "../layout/TextInputGroup";
 import uuid from "uuid";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 class MovieAdd extends Component {
   state = {
@@ -148,9 +149,13 @@ class MovieAdd extends Component {
                               <div class="container">
                                 <div class="row">
                                   <div class="col-md-3">
-                                    <a href="/" class="btn btn-light btn-block">
+                                   
+                                    <Link
+                                      to="/"
+                                      className="btn btn-light btn-block"
+                                    >
                                       <i class="fas fa-arrow-left"></i>Back
-                                    </a>
+                                    </Link>
                                   </div>
                                   <div class="col-md-3">
                                     <input
