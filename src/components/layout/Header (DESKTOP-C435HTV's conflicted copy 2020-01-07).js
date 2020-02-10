@@ -18,7 +18,6 @@ const Header = props => {
             <li className="nav-item">
               <Link to="/" className="nav-link">
                 <i className="fas fa-home" />
-                Home
               </Link>
             </li>
 

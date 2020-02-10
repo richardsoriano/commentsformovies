@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Consumer } from "../../context";
-import Checkbox from "../checkboxes/Checkbox";
+import Checkbox from "../Checkboxes/Checkbox";
 import PropTypes from "prop-types";
 import axios from "axios";
 import TextInputGroup from "../layout/TextInputGroup";

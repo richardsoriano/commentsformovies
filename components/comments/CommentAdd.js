@@ -1,62 +1,48 @@
 import React, { Component } from "react";
 import { Consumer } from "../../context";
-import Checkbox from "../checkboxes/Checkbox";
-import PropTypes from "prop-types";
+import Checkbox from "../Checkboxes/Checkbox";
+import uuid from "uuid";
 import axios from "axios";
 import TextInputGroup from "../layout/TextInputGroup";
 import { Link } from "react-router-dom";
 
-class CommentEdit extends Component {
+class CommentAdd extends Component {
   constructor(props) {
     super(props);
+    const { id } = this.props.match.params;
+
+    //initialize the checkboxes with keys value to false;
+    var listCheckboxes = [];
+    listCheckboxes["opening_poor"] = false;
+    listCheckboxes["premise_poor"] = false;
+    listCheckboxes["character_poor"] = false;
+    listCheckboxes["dialogue_poor"] = false;
+
+    listCheckboxes["opening_good"] = false;
+    listCheckboxes["premise_good"] = false;
+    listCheckboxes["character_good"] = false;
+    listCheckboxes["dialogue_good"] = false;
+
+    listCheckboxes["dude_with_a_problem"] = false;
+    listCheckboxes["golden_fleece"] = false;
+    listCheckboxes["buddy_love"] = false;
+    listCheckboxes["institutionalized"] = false;
+    listCheckboxes["superhero"] = false;
 
     this.state = {
-      id: this.props.match.params,
-      movieid: 0,
       title: "",
       user: "",
       commentText: "",
-      checkboxes: {},
+      checkboxes: listCheckboxes,
+      movieid: id,
       errors: {}
     };
     this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
   }
 
-  //Delete from CommentEdit page.
-  onDeleteClick = async (id, dispatch) => {
-    try {
-      await axios.delete(
-        `https://my-json-server.typicode.com/hufflepuffprogrammer/test2/movies/${id}`
-      );
-      dispatch({ type: "DELETE_COMMENT", payload: id });
-    } catch (e) {
-      dispatch({ type: "DELETE_COMMENT", payload: id });
-    }
-
-    this.props.history.push(`/comments/${this.state.movieid}`);
-  };
-
-  async componentDidMount() {
-    const { id } = this.props.match.params;
-    const res = await axios.get(
-      `https://my-json-server.typicode.com/hufflepuffprogrammer/test2/comments/${id}`
-    );
-
-    const comment = res.data;
-
-    this.setState({
-      id: comment.id,
-      movieid: comment.movieid,
-      title: comment.title,
-      user: comment.user,
-      commentText: comment.comment_text,
-      checkboxes: comment.checkboxes
-    });
-  }
-
   onSubmit = async (dispatch, e) => {
     e.preventDefault();
-    const { id, commentText, checkboxes, movieid, user, title } = this.state;
+    const { commentText, checkboxes, movieid, user, title } = this.state;
 
     //Check for Errors
     if (title === "") {
@@ -71,9 +57,9 @@ class CommentEdit extends Component {
       this.setState({ errors: { comment_text: "Comment is required" } });
       return;
     }
-    //updComment has updated data in component
-    const updComment = {
-      id,
+
+    const newComment = {
+      id: uuid(),
       movieid,
       comment_text: commentText,
       title,
@@ -81,18 +67,25 @@ class CommentEdit extends Component {
       checkboxes
     };
 
-    dispatch({ type: "UPDATE_COMMENT", payload: updComment });
+    try {
+      const res = await axios.post(
+        "https://jsonplaceholder.typicode.com/users",
+        newComment
+      );
+      dispatch({ type: "ADD_COMMENT", payload: res.data });
+    } catch (e) {
+      dispatch({ type: "ADD_COMMENT", payload: newComment });
+    }
 
-    //Clear fields
+    this.deselectAll();
     this.setState({
-      id,
-      movieid,
-      title,
-      user,
-      commentText,
-      checkboxes: [],
+      title: "",
+      user: "",
+      commentText: "",
+      checkboxes: {},
       errors: {}
     });
+
     this.props.history.push(`/comments/${movieid}`);
   };
 
@@ -113,6 +106,7 @@ class CommentEdit extends Component {
       }));
     });
   };
+
   selectAll = () => this.selectAllCheckboxes(true);
   deselectAll = () => this.selectAllCheckboxes(false);
   handleTextboxChange = e => this.setState({ [e.target.name]: e.target.value });
@@ -245,9 +239,10 @@ class CommentEdit extends Component {
       </div>
     );
   };
+
   onChange = e => this.setState({ [e.target.name]: e.target.value });
   render() {
-    var { title, commentText, user, errors, id } = this.state;
+    const { title, commentText, user, errors } = this.state;
 
     return (
       <Consumer>
@@ -261,7 +256,7 @@ class CommentEdit extends Component {
                   <div class="row">
                     <div class="col-md-6">
                       <h1>
-                        <i class="far fa-comments"></i> Comment Edit
+                        <i class="far fa-comments"></i> Comment Add
                       </h1>
                     </div>
                   </div>
@@ -304,7 +299,7 @@ class CommentEdit extends Component {
                                 name="title"
                                 label="Title"
                                 value={title}
-                                placeHolder=""
+                                placeHolder="Enter the Title"
                                 onChange={this.onChange}
                                 error={errors.title}
                               />
@@ -317,7 +312,7 @@ class CommentEdit extends Component {
                                 name="user"
                                 label="User"
                                 value={user}
-                                placeHolder=""
+                                placeHolder="Enter the User"
                                 onChange={this.onChange}
                                 error={errors.user}
                               />
@@ -328,9 +323,9 @@ class CommentEdit extends Component {
                               <TextInputGroup
                                 type="text"
                                 name="commentText"
-                                label="Comment"
+                                label="Description"
                                 value={commentText}
-                                placeHolder=""
+                                placeHolder="Enter a Comment"
                                 onChange={this.onChange}
                                 error={errors.comment_text}
                               />
@@ -353,20 +348,6 @@ class CommentEdit extends Component {
                                     type="submit"
                                   />
                                 </div>
-
-                                <div class="col-md-3">
-                                  <Link
-                                    to="#"
-                                    className="btn btn-danger btn-block"
-                                    onClick={this.onDeleteClick.bind(
-                                      this,
-                                      id,
-                                      dispatch
-                                    )}
-                                  >
-                                    <i className="far fa-trash-alt"></i>Delete
-                                  </Link>
-                                </div>
                               </div>
                             </div>
                           </section>
@@ -384,7 +365,4 @@ class CommentEdit extends Component {
   }
 }
 
-CommentEdit.propTypes = {
-  id: PropTypes.number.isRequired
-};
-export default CommentEdit;
+export default CommentAdd;

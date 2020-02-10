@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
-import { HashRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import Search from "./components/search/Search";
 import Movies from "./components/movies/Movies";
@@ -29,7 +29,7 @@ class App extends Component {
   render() {
     return (
       <Provider>
-        <Router basename={process.env.PUBLIC_URL}>
+        <Router>
           <div className="App">
             <Header branding="Screenplay Salon" />
             <div className="container">
