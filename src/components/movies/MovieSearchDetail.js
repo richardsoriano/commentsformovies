@@ -20,7 +20,7 @@ class MovieSearchDetail extends Component {
           return (
             <React.Fragment>
               <td>
-                <Link to={`movie/view/${movieid}`}>
+                <Link to={`movie/detail/${movieid}`}>
                   <img src={poster} alt={title} class="img-thumbnail"></img>
                 </Link>
               </td>
