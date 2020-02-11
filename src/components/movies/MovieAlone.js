@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-
+import { Link } from "react-router-dom";
 class MovieAlone extends Component {
   render() {
     const { id, title, desc, writer, director, poster } = this.props.movie;
@@ -17,7 +17,7 @@ class MovieAlone extends Component {
                 <td width="80%">
                   <div class="row">
                     <h4>
-                      <a href={`/movie/detail/${id}`}>{title}</a>
+                      <Link to={`/movie/detail/${id}`}>{title}</Link>
                     </h4>
                   </div>
                   <div class="row">
