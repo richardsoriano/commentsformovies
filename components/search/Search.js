@@ -183,9 +183,9 @@ class Search extends Component {
                 <div className="container">
                   <div className="row">
                     <div className="col-md-3">
-                      <a href="/" class="btn btn-light btn-block">
+                      <Link to="/" class="btn btn-light btn-block">
                         <i className="fas fa-arrow-left"></i>Back
-                      </a>
+                      </Link>
                     </div>
                   </div>
                 </div>

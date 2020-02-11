@@ -19,11 +19,12 @@ class Movies extends Component {
                         href="/movie/add"
                         className="btn btn-primary btn-block"
                       >
-                        <i className="fas fa-plus"></i> Add Movie
+                        {" "}
+                        <i class="fas fa-plus"></i> Add Movie
                       </a>
                     </div>
                     <div className="col-md-3">
-                      <a href={`/search`} className="btn btn-info btn-block">
+                      <a href="/search" className="btn btn-success btn-block">
                         <i className="fas fa-search"></i>Search
                       </a>
                     </div>

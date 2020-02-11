@@ -10,9 +10,9 @@ const Header = props => {
         navbar-dark bg-primary mb-3 py-0"
     >
       <div className="container">
-        <a href="/" className="navbar-brand">
+        <Link t="/" className="navbar-brand">
           {branding}
-        </a>
+        </Link>
         <div>
           <ul className="navbar-nav mr-auto">
             <li className="nav-item">

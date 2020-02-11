@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Movie from "./Movie";
 import { Consumer } from "../../context";
+import { Link } from "react-router-dom";
 
 class Movies extends Component {
   render() {
@@ -15,17 +16,18 @@ class Movies extends Component {
                 <div className="container">
                   <div className="row">
                     <div className="col-md-3">
-                      <a
-                        href="/movie/add"
+                      <Link
+                        to="/movie/add"
                         className="btn btn-primary btn-block"
                       >
-                        <i className="fas fa-plus"></i> Add Movie
-                      </a>
+                        {" "}
+                        <i class="fas fa-plus"></i> Add Movie
+                      </Link>
                     </div>
                     <div className="col-md-3">
-                      <a href={`/search`} className="btn btn-info btn-block">
+                      <Link to="/search" className="btn btn-success btn-block">
                         <i className="fas fa-search"></i>Search
-                      </a>
+                      </Link>
                     </div>
                   </div>
                 </div>
